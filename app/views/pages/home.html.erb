@@ -1,2 +1,20 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url('<%= asset_path("cover.jpeg") %>'); background-position: center top; text-align: right;">
+  <div class="container">
+    <h1>Trouvez votre résidence en 1 clique !</h1>
+    <p>Grace à notre comparateur, trouvez facilement votre résidence sénior selon vos critères</p>
+    <%= link_to "Recherche", residences_path, class:"btn btn-flat" %>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-links">
+    <a href="#"><i class="fab fa-github"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-facebook"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-linkedin"></i></a>
+  </div>
+  <div class="footer-copyright">
+    <i class="fas fa-heart"></i>
+  </div>
+</div>

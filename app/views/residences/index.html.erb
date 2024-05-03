@@ -1,0 +1,42 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-12">
+      <h1>Nos résidences</h1>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <% @residences.each do |residence| %>
+      <div class="col-md-4">
+        <div class="residence-card">
+          <div class="residence-card-image"></div>
+          <div class="residence-card-content">
+            <div class="residence-card-title">
+              <h4><%= residence.name %></h4>
+            </div>
+            <p><%= residence.address %></p>
+            <div class="flex">
+              <div class="flex align-items-center">
+                <i class="fa-solid fa-people-line"></i>
+                <span><%= residence.number_of_guests %></span>
+              </div>
+              <div class="flex align-items-center ms-3">
+                <i class="fa-solid fa-euro-sign"></i>
+                <span><%= residence.price_per_night %></span>
+              </div>
+            </div>
+          </div>
+          <div class="residence-card-actions">
+            <%= link_to "More info", residence_path(residence) %>
+            <%= link_to "Edit", edit_residence_path(residence), class: "ms-3 text-warning" %>
+            <%= link_to "Remove", residence_path(residence),
+                data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                class: "ms-3 text-danger"
+            %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

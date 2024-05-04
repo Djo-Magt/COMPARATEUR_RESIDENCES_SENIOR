@@ -13,13 +13,23 @@ class ResidencesController < ApplicationController
   end
 
   def create
-
+    @residence = Residence.new(residence_params)
+    if @residence.save
+      redirect_to residence_path(@residence)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def edit
   end
 
   def update
+    if residence.update(residence_params)
+      redirect_to residence_path(@residence)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -30,6 +40,7 @@ class ResidencesController < ApplicationController
   private
 
   def residence_params
+    params.require(:residence).permit(:name, :address, :description, :price_per_night, :number_of_guests, photos: [])
   end
 
   def set_residence

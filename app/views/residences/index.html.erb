@@ -10,7 +10,11 @@
     <% @residences.each do |residence| %>
       <div class="col-md-4">
         <div class="residence-card" >
-          <div class="residence-card-image" style="background-image: url('<%= cl_image_path residence.photos.first.key%>')"></div>
+          <% if residence.photos.attached? %>
+            <div class="residence-card-image" style="background-image: url('<%= cl_image_path residence.photos.first.key%>')"></div>
+          <% else %>
+            <div class="residence-card-image"></div>
+          <% end %>
           <div class="residence-card-content">
             <div class="residence-card-title">
               <h4><%= residence.name %></h4>

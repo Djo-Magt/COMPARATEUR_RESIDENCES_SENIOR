@@ -15,11 +15,11 @@
             <%= link_to "Home", "#", class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Messages", "#", class: "nav-link" %>
+            <%= link_to "Ajouter", new_residence_path, class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
-          <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= current_user.email%>
+          <a href="#" class="nav-link" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="text-danger"><%= current_user.prenom %>-<%= current_user.nom %></span>
           </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Action", "#", class: "dropdown-item" %>

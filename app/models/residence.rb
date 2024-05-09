@@ -1,5 +1,6 @@
 class Residence < ApplicationRecord
   has_many_attached :photos
+  has_many :comments, dependent: :destroy
 
   validates :name, presence: true
   validates :address, presence: true

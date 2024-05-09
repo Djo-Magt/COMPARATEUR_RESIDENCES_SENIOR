@@ -1,4 +1,8 @@
-<div class="map" style="background-image: url('<%= cl_image_path @residence.photos.last.key%>')"></div>
+<% if @residence.photos.attached? %>
+  <div class="map" style="background-image: url('<%= cl_image_path @residence.photos.last.key%>')"></div>
+<% else %>
+  <div class="map">Photo non dispo</div>
+<% end %>
 
 <div class="container margin-top-negative">
   <div class="row">
@@ -10,7 +14,6 @@
       <div class="residence-show-card">
         <h3>Description...</h3>
         <p><%= @residence.description %></p>
-        <div class="map" style="background-image: url('https://maps.googleapis.com/maps/api/staticmap?center=<%= @residence.address %>&zoom=13&scale=2&size=1000x1000&maptype=roadmap&markers=color:red%7C<%= @residence.address %>&key=AIzaSyAPpx0wk4d-AQ8bhe8-a-ihC7NXLoPElhg')"></div>
       </div>
     </div>
 
@@ -43,14 +46,16 @@
       </div>
       <div class="residence-show-card">
         <div class="flex-align">
-          <h6 class="no-mb">Share</h6>
-
-          <div class="flex">
-            <i class="fa-brands fa-facebook-square me-2"></i>
-            <i class="fa-brands fa-twitter-square me-2"></i>
-            <i class="fa-brands fa-pinterest-square me-2"></i>
+          <div class="container" data-controller="insert-comment">
+            <%= render "comments/form", residence: @residence, comment: @comment %>
+            <div class="mt-3" data-insert-comment-target="comment_item">
+              <% @comments.each do |comment| %>
+                <%= render "comments/comment", residence: @residence, comment: comment %>
+              <% end %>
+            </div>
           </div>
         </div>
+
       </div>
     </div>
   </div>

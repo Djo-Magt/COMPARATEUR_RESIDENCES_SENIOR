@@ -4,43 +4,22 @@
       <h1>Nos résidences</h1>
     </div>
   </div>
+  <div data-controller="insert-in-list">
+    <div class="row" data-insert-in-list-target="items">
+      <% @residences.each do |residence| %>
+        <%= render "residence", residence: residence %>
+      <% end %>
+    </div>
 
-
-  <div class="row">
-    <% @residences.each do |residence| %>
-      <div class="col-md-4">
-        <div class="residence-card" >
-          <% if residence.photos.attached? %>
-            <div class="residence-card-image" style="background-image: url('<%= cl_image_path residence.photos.first.key%>')"></div>
-          <% else %>
-            <div class="residence-card-image"></div>
-          <% end %>
-          <div class="residence-card-content">
-            <div class="residence-card-title">
-              <h4><%= residence.name %></h4>
-            </div>
-            <p><%= residence.address %></p>
-            <div class="flex">
-              <div class="flex align-items-center">
-                <i class="fa-solid fa-people-line"></i>
-                <span><%= residence.number_of_guests %></span>
-              </div>
-              <div class="flex align-items-center ms-3">
-                <i class="fa-solid fa-euro-sign"></i>
-                <span><%= residence.price_per_night %></span>
-              </div>
-            </div>
-          </div>
-          <div class="residence-card-actions">
-            <%= link_to "More info", residence_path(residence) %>
-            <%= link_to "Edit", edit_residence_path(residence), class: "ms-3 text-warning" %>
-            <%= link_to "Remove", residence_path(residence),
-                data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-                class: "ms-3 text-danger"
-            %>
+    <div class="row">
+      <div class="col">
+        <div data-controller="toggle" class="mt-5">
+          <button class="btn btn-outline-primary" data-action="click->toggle#fire">Ajouter une résidence</button>
+          <div data-toggle-target="togglableElement" class="d-none">
+            <%= render "form", residence: @residence %>
           </div>
         </div>
       </div>
-    <% end %>
+    </div>
   </div>
 </div>

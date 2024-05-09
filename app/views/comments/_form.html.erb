@@ -1,0 +1,8 @@
+<%= simple_form_for [residence, comment],
+  data: {
+      insert_comment_target: "comment_form",
+      action: "submit->insert-comment#ajout"
+      } do |f| %>
+  <%= f.input :content, as: :text %>
+  <%= f.button :submit %>
+<% end %>

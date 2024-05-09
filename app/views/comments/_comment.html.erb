@@ -1,0 +1,10 @@
+
+<div class="card mb-2" >
+  <div class="card-body">
+    <p class="card-text"><%= comment.content %></p>
+    <%= link_to "x", comment_path(comment),
+      data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+      class: "ms-3 text-danger"
+    %>
+  </div>
+</div>

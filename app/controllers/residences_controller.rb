@@ -3,21 +3,26 @@ class ResidencesController < ApplicationController
 
   def index
     @residences = Residence.all
-  end
-
-  def show
-  end
-
-  def new
     @residence = Residence.new
   end
 
+  def show
+    @comments = @residence.comments.where.not(id: nil)
+    @comment = @residence.comments.new
+  end
+
+
   def create
     @residence = Residence.new(residence_params)
-    if @residence.save
-      redirect_to residence_path(@residence)
-    else
-      render :new, status: :unprocessable_entity
+
+    respond_to do |format|
+      if @residence.save
+        format.html { redirect_to residences_path }
+        format.json
+      else
+        format.html { render :index, status: :unprocessable_entity }
+        format.json
+      end
     end
   end
 
@@ -25,8 +30,8 @@ class ResidencesController < ApplicationController
   end
 
   def update
-    if residence.update(residence_params)
-      redirect_to residence_path(@residence)
+    if @residence.update(residence_params)
+      redirect_to residences_path
     else
       render :new, status: :unprocessable_entity
     end

@@ -28,7 +28,7 @@ gem "jbuilder"
 
 gem 'cloudinary'
 
-# gem "algoliasearch-rails"
+gem "pg_search"
 
 gem 'pundit'
 

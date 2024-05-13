@@ -7,7 +7,11 @@ class ResidencesController < ApplicationController
   before_action :set_residence, only: [:show, :edit, :update, :destroy]
 
   def index
-    @residences = policy_scope(Residence)
+    if params[:query].present?
+      @residences = policy_scope(Residence).search_by_name(params[:query])
+    else
+      @residences = policy_scope(Residence)
+    end
     @residence = Residence.new
   end
 

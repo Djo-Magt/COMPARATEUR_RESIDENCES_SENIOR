@@ -10,4 +10,12 @@ class Residence < ApplicationRecord
   validates :price_per_night, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :number_of_guests, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
 
+  include PgSearch::Model
+
+  pg_search_scope :search_by_name,
+  against: [ :name],
+  using: {
+    tsearch: { prefix: true }
+  }
+
 end

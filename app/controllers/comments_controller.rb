@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :set_residence, only: [:create]
 
+
   def create
     @comment = Comment.new(comment_params)
     @comment.residence = @residence

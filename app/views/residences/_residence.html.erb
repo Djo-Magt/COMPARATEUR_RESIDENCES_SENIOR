@@ -23,11 +23,13 @@
     </div>
     <div class="residence-card-actions">
       <%= link_to "More info", residence_path(residence) %>
-      <%= link_to "Edit", edit_residence_path(residence), class: "ms-3 text-warning" %>
-      <%= link_to "Remove", residence_path(residence),
-          data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-          class: "ms-3 text-danger"
-      %>
+      <% if policy(residence).update? %>
+        <%= link_to "Edit", edit_residence_path(residence), class: "ms-3 text-warning" %>
+        <%= link_to "Remove", residence_path(residence),
+            data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+            class: "ms-3 text-danger"
+        %>
+      <% end %>
     </div>
   </div>
 </div>

@@ -10,16 +10,17 @@
         <%= render "residence", residence: residence %>
       <% end %>
     </div>
-
-    <div class="row">
-      <div class="col">
-        <div data-controller="toggle" class="mt-5">
-          <button class="btn btn-outline-primary" data-action="click->toggle#fire">Ajouter une résidence</button>
-          <div data-toggle-target="togglableElement" class="d-none">
-            <%= render "form", residence: @residence %>
+    <% if policy(Residence).create? %>
+      <div class="row">
+        <div class="col">
+          <div data-controller="toggle" class="mt-5">
+            <button class="btn btn-outline-primary" data-action="click->toggle#fire">Ajouter une résidence</button>
+            <div data-toggle-target="togglableElement" class="d-none">
+              <%= render "form", residence: @residence %>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    <% end %>
   </div>
 </div>
